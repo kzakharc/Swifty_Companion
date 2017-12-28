@@ -53,16 +53,18 @@ class ViewController: UIViewController {
     }
     
     func assignbackground() {
-        let background = UIImage(named: "background")
-        
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  UIViewContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
-        view.addSubview(imageView)
-        self.view.sendSubview(toBack: imageView)
+        let img = UIImage(named: "background")
+        view.layer.contents = img?.cgImage
+//        let background = UIImage(named: "background")
+//
+//        var imageView : UIImageView!
+//        imageView = UIImageView(frame: view.bounds)
+//        imageView.contentMode =  UIViewContentMode.scaleAspectFill
+//        imageView.clipsToBounds = true
+//        imageView.image = background
+//        imageView.center = view.center
+//        view.addSubview(imageView)
+//        self.view.sendSubview(toBack: imageView)
     }
     
     @IBAction func touchSearch(_ sender: UIButton) {
