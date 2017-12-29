@@ -17,4 +17,6 @@ struct StudentStruct {
     var correction_point = 0
     var location = "unaviable"
     var wallet = 0
+    var pool_year = 2016
+    
 }

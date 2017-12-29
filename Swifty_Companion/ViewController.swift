@@ -19,11 +19,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        assignbackground()
         
         errorLabel.isHidden = true
         
-        usernameField.alpha = 0.7
+        usernameField.alpha = 0.8
         usernameField.layer.cornerRadius = 5
         usernameField.layer.borderWidth = 1.5
         usernameField.layer.borderColor = UIColor.white.cgColor
@@ -36,6 +35,7 @@ class ViewController: UIViewController {
     }
     
     func emtyField() {
+        errorLabel.alpha = 0.8
         errorLabel.backgroundColor = UIColor(red:0.92, green:0.89, blue:0.61, alpha:1.0)
         errorLabel.textColor = UIColor(red:1.00, green:0.40, blue:0.40, alpha:1.0)
         errorLabel.text = "User name field is emty!"
@@ -45,26 +45,12 @@ class ViewController: UIViewController {
     func checkName() {
         
         DispatchQueue.main.async {
+            self.errorLabel.alpha = 0.7
             self.errorLabel.backgroundColor = UIColor(red:1.00, green:0.40, blue:0.40, alpha:1.0)
             self.errorLabel.textColor = UIColor(red:0.92, green:0.89, blue:0.61, alpha:1.0)
             self.errorLabel.text = "Wrong user name!"
             self.errorLabel.isHidden = false
         }
-    }
-    
-    func assignbackground() {
-        let img = UIImage(named: "background")
-        view.layer.contents = img?.cgImage
-//        let background = UIImage(named: "background")
-//
-//        var imageView : UIImageView!
-//        imageView = UIImageView(frame: view.bounds)
-//        imageView.contentMode =  UIViewContentMode.scaleAspectFill
-//        imageView.clipsToBounds = true
-//        imageView.image = background
-//        imageView.center = view.center
-//        view.addSubview(imageView)
-//        self.view.sendSubview(toBack: imageView)
     }
     
     @IBAction func touchSearch(_ sender: UIButton) {
@@ -116,7 +102,7 @@ class ViewController: UIViewController {
     
     func signIn(token: String) {
         
-        let req = "https://api.intra.42.fr/v2/users/" + studentName + "?access_token=" + self.token
+        let req = "https://api.intra.42.fr/v2/users/" + studentName.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! + "?access_token=" + self.token
         let url = URL(string: req)
         let request = URLRequest(url: url! as URL)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -126,6 +112,8 @@ class ViewController: UIViewController {
             else if let d = data {
                 do {
                     if let dic = try JSONSerialization.jsonObject(with: d, options: []) as? NSDictionary {
+                        var curs = NSDictionary()
+                        var allProjects = [NSDictionary]()
                         if let name = dic["displayname"] as? String {
                             self.student.displayname = name
                         }
@@ -144,12 +132,39 @@ class ViewController: UIViewController {
                         if let wallet = dic["wallet"] as? Int {
                             self.student.wallet = wallet
                         }
+                        if let pool_year = dic["pool_year"] as? Int {
+                            self.student.pool_year = pool_year
+                        }
+                        if let dictionary = dic["cursus_users"] as? [NSDictionary] {
+                            for cursus in dictionary {
+                                if let a = cursus.value(forKey: "cursus_id") as? Int {
+                                    if a == 1 {
+                                        curs = cursus
+                                        print(curs)
+                                    }
+                                }
+                            }
+                        }
+                        if let projects = dic["projects_users"] as? [NSDictionary] {
+                            for project in projects {
+                                if let a = project.value(forKey: "cursus_ids") as? [Int] {
+                         
+                                        if a[0] == 1 {
+                                        allProjects.append(project)
+                                        }
+                                      // allProjects["\(project.value(forKey: "id"))"] = project
+                                    
+                                }
+                            }
+                        }
+                        print(allProjects)
                         print(self.student)
                         if dic.count == 0 {
                             self.checkName()
                         } else {
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "firstSegue", sender: self)
+                                self.usernameField.text = ""
                             }
                         }
                     }
@@ -157,6 +172,7 @@ class ViewController: UIViewController {
                 catch (let err) {
                     print(err)
                 }
+                
             }
         }
         task.resume()

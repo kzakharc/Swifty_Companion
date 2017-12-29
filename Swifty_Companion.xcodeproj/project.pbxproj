@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		082FB6741FED826200207128 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082FB6731FED826200207128 /* Student.swift */; };
+		08A9A13F1FF68E220008DE03 /* customTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A9A13E1FF68E220008DE03 /* customTableViewCell.swift */; };
 		08FDEA831FE69F7A00F2FDC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FDEA821FE69F7A00F2FDC6 /* AppDelegate.swift */; };
 		08FDEA851FE69F7A00F2FDC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FDEA841FE69F7A00F2FDC6 /* ViewController.swift */; };
 		08FDEA881FE69F7B00F2FDC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08FDEA861FE69F7B00F2FDC6 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		082FB6731FED826200207128 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		08A9A13E1FF68E220008DE03 /* customTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTableViewCell.swift; sourceTree = "<group>"; };
 		08FDEA7F1FE69F7A00F2FDC6 /* Swifty_Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swifty_Companion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08FDEA821FE69F7A00F2FDC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08FDEA841FE69F7A00F2FDC6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				08FDEA841FE69F7A00F2FDC6 /* ViewController.swift */,
+				08A9A13E1FF68E220008DE03 /* customTableViewCell.swift */,
 				082FB6731FED826200207128 /* Student.swift */,
 				08FDEA861FE69F7B00F2FDC6 /* Main.storyboard */,
 				08FDEA8E1FE69F7B00F2FDC6 /* Info.plist */,
@@ -148,6 +151,7 @@
 			files = (
 				082FB6741FED826200207128 /* Student.swift in Sources */,
 				08FDEA851FE69F7A00F2FDC6 /* ViewController.swift in Sources */,
+				08A9A13F1FF68E220008DE03 /* customTableViewCell.swift in Sources */,
 				08FDEA831FE69F7A00F2FDC6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
