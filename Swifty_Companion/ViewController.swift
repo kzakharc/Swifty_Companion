@@ -101,7 +101,7 @@ class ViewController: UIViewController {
     }
     
     func signIn(token: String) {
-        
+        print(token)
         let req = "https://api.intra.42.fr/v2/users/" + studentName.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! + "?access_token=" + self.token
         let url = URL(string: req)
         let request = URLRequest(url: url! as URL)
@@ -112,8 +112,6 @@ class ViewController: UIViewController {
             else if let d = data {
                 do {
                     if let dic = try JSONSerialization.jsonObject(with: d, options: []) as? NSDictionary {
-                        var curs = NSDictionary()
-                        var allProjects = [NSDictionary]()
                         if let name = dic["displayname"] as? String {
                             self.student.displayname = name
                         }
@@ -139,8 +137,18 @@ class ViewController: UIViewController {
                             for cursus in dictionary {
                                 if let a = cursus.value(forKey: "cursus_id") as? Int {
                                     if a == 1 {
-                                        curs = cursus
-                                        print(curs)
+                                        if let g = cursus.value(forKey: "grade") as? String {
+                                            self.student.grade = g
+                                        }
+                                        if let l = cursus.value(forKey: "level") as? Float {
+                                            self.student.level = l
+                                        }
+                                        if let skillDictionary = cursus.value(forKey: "skills") as? [NSDictionary] {
+                                            for skill in skillDictionary {
+                                                self.student.skills.append(SkillsStruct(name: skill.value(forKey: "name") as? String, level: skill.value(forKey: "level") as? Float))
+                                                
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -148,20 +156,20 @@ class ViewController: UIViewController {
                         if let projects = dic["projects_users"] as? [NSDictionary] {
                             for project in projects {
                                 if let a = project.value(forKey: "cursus_ids") as? [Int] {
-                         
-                                        if a[0] == 1 {
-                                        allProjects.append(project)
+                                    if a[0] == 1 {
+                                       if let mark = project.value(forKey: "final_mark") as? Int,
+                                        let valid = project.value(forKey: "validated?") as? Bool,
+                                        let pro = project.value(forKey: "project") as? [String: Any?] {
+                                            self.student.projects.append(MarksStruct(finalMark: mark, name: pro["slug"] as? String, validated: valid))
                                         }
-                                      // allProjects["\(project.value(forKey: "id"))"] = project
-                                    
+                                    }
                                 }
                             }
                         }
-                        print(allProjects)
-                        print(self.student)
                         if dic.count == 0 {
                             self.checkName()
                         } else {
+                            //setStudentLabels(self.student)
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "firstSegue", sender: self)
                                 self.usernameField.text = ""

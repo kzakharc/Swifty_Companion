@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="firstCell" rowHeight="300" id="kuQ-Xg-Yuy">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="firstCell" rowHeight="300" id="kuQ-Xg-Yuy" customClass="customTableViewCell" customModule="Swifty_Companion" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kuQ-Xg-Yuy" id="LQF-Yc-JpO">
@@ -199,6 +199,19 @@
                                         <constraint firstItem="LBx-Nz-pjh" firstAttribute="top" secondItem="LQF-Yc-JpO" secondAttribute="top" constant="13" id="k1a-Zu-CjK"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="IntraProfileImage" destination="1Fd-gt-OgC" id="pQn-cK-uQt"/>
+                                    <outlet property="correctionPointLabel" destination="Iw7-Rg-LKy" id="uFn-e9-Wcd"/>
+                                    <outlet property="diaplayNameLabel" destination="GDQ-6K-Qdc" id="iEP-TT-5hz"/>
+                                    <outlet property="intraProfileImage" destination="1Fd-gt-OgC" id="taK-oR-Vrx"/>
+                                    <outlet property="levelLabel" destination="UTY-GG-TzP" id="68z-aE-ZrB"/>
+                                    <outlet property="locationLabel" destination="tWM-8t-h5T" id="VgG-TK-ymd"/>
+                                    <outlet property="loginLabel" destination="pag-cI-AMq" id="ujy-N0-iAH"/>
+                                    <outlet property="phoneNumberLabel" destination="o2k-z3-W4s" id="Zjd-u4-4Zj"/>
+                                    <outlet property="progressViewLabel" destination="GZ4-nm-M3N" id="uWT-x9-qum"/>
+                                    <outlet property="walletLabel" destination="CFZ-MS-s72" id="lcZ-Qy-E6O"/>
+                                    <outlet property="yearLabel" destination="t5w-WV-wPJ" id="IbK-t4-IC2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
