@@ -10,19 +10,9 @@ import UIKit
 
 
 class customTableViewCell: UITableViewCell {
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-
-    @IBOutlet weak var intraProfileImage: UIImageView!
-    @IBOutlet weak var diaplayNameLabel: UILabel!
+    
+    @IBOutlet weak var intraProfileImage: UIImageView! // not set
+    @IBOutlet weak var displayNameLabel: UILabel!
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -30,9 +20,16 @@ class customTableViewCell: UITableViewCell {
     @IBOutlet weak var correctionPointLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var progressViewLabel: UIView!
+    @IBOutlet weak var progressViewLabel: UIView! // not set
     
     func setStudentLabels(for studentInfo: StudentStruct) {
-        
+        displayNameLabel.text = studentInfo.displayname
+        loginLabel.text = studentInfo.login
+        phoneNumberLabel.text = studentInfo.phone
+        locationLabel.text = studentInfo.location
+        walletLabel.text = String(studentInfo.wallet)
+        correctionPointLabel.text = String(studentInfo.correction_point)
+        yearLabel.text = String(studentInfo.pool_year)
+        levelLabel.text = String(studentInfo.level)
     }
 }

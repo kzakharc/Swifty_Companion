@@ -100,6 +100,11 @@ class ViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dectinationView: MyTableViewController = segue.destination as! MyTableViewController
+        dectinationView.studentInfo = self.student
+    }
+    
     func signIn(token: String) {
         print(token)
         let req = "https://api.intra.42.fr/v2/users/" + studentName.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! + "?access_token=" + self.token
@@ -185,6 +190,7 @@ class ViewController: UIViewController {
         }
         task.resume()
     }
+    
 }
 
 
