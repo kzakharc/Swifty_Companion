@@ -126,6 +126,9 @@ class ViewController: UIViewController {
                         if let phone = dic["phone"] as? String {
                             self.student.phone = phone
                         }
+                        if let image = dic["image_url"] as? String {
+                            self.student.imageUrl = image
+                        }
                         if let correction_point = dic["correction_point"] as? Int {
                             self.student.correction_point = correction_point
                         }
@@ -174,7 +177,7 @@ class ViewController: UIViewController {
                         if dic.count == 0 {
                             self.checkName()
                         } else {
-                            //setStudentLabels(self.student)
+                            // everything is ok
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "firstSegue", sender: self)
                                 self.usernameField.text = ""

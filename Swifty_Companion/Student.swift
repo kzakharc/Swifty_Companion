@@ -12,14 +12,15 @@ struct StudentStruct {
     
     var login = "none"
     var displayname = "none"
-    var email = "email doesn't exist" // no label
+    var email = "email doesn't exist"
     var phone = "phone number doesn't exist"
     var correction_point = 0
     var location = "unaviable"
     var wallet = 0
     var pool_year = 2016
-    var grade = "Novice" // no label
+    var grade = "Novice"
     var level : Float = 0.0
+    var imageUrl: String?
     
     var skills = [SkillsStruct]() // no label
     var projects = [MarksStruct]() // no label
