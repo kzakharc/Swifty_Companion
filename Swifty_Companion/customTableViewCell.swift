@@ -22,6 +22,7 @@ class customTableViewCell: UITableViewCell {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var gradeLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
     
     func setStudentLabels(for studentInfo: StudentStruct) {
 
@@ -29,12 +30,13 @@ class customTableViewCell: UITableViewCell {
         loginLabel.text = studentInfo.login
         phoneNumberLabel.text = studentInfo.phone
         locationLabel.text = studentInfo.location
-        walletLabel.text = "Wallet : " + String(studentInfo.wallet)
+        walletLabel.text = "Wallet : " + String(studentInfo.wallet) + " ₳"
         correctionPointLabel.text = "Correction : " + String(studentInfo.correction_point)
         yearLabel.text = "Year : " + String(studentInfo.pool_year)
         levelLabel.text = "Level : " + String(studentInfo.level) + "%"
         gradeLabel.text = "Grade : " + studentInfo.grade
         emailLabel.text = studentInfo.email
+        progressView.progress = studentInfo.level.truncatingRemainder(dividingBy: 1)
         
         if let imageAdrs = studentInfo.imageUrl {
             let URL_IMAGE = URL(string: imageAdrs)
