@@ -12,10 +12,10 @@ struct StudentStruct {
     
     var login = "none"
     var displayname = "none"
-    var email = "email doesn't exist"
-    var phone = "phone number doesn't exist"
+    var email = "no email"
+    var phone = "no phone"
     var correction_point = 0
-    var location = "unaviable"
+    var location = "Unaviable"
     var wallet = 0
     var pool_year = 2016
     var grade = "Novice"

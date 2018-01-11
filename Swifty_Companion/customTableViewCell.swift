@@ -24,15 +24,15 @@ class customTableViewCell: UITableViewCell {
     @IBOutlet weak var emailLabel: UILabel!
     
     func setStudentLabels(for studentInfo: StudentStruct) {
-        
-        displayNameLabel.text = studentInfo.displayname
+
+        displayNameLabel.text = "  " + studentInfo.displayname
         loginLabel.text = studentInfo.login
         phoneNumberLabel.text = studentInfo.phone
         locationLabel.text = studentInfo.location
         walletLabel.text = "Wallet : " + String(studentInfo.wallet)
         correctionPointLabel.text = "Correction : " + String(studentInfo.correction_point)
         yearLabel.text = "Year : " + String(studentInfo.pool_year)
-        levelLabel.text = String(studentInfo.level)
+        levelLabel.text = "Level : " + String(studentInfo.level) + "%"
         gradeLabel.text = "Grade : " + studentInfo.grade
         emailLabel.text = studentInfo.email
         
@@ -49,6 +49,8 @@ class customTableViewCell: UITableViewCell {
                             DispatchQueue.main.async {
                                 self.intraProfileImage.image = image
                                 self.intraProfileImage.layer.masksToBounds = false
+                                self.intraProfileImage.layer.borderWidth = 2
+                                self.intraProfileImage.layer.borderColor = UIColor.white.cgColor
                                 self.intraProfileImage.layer.cornerRadius = self.intraProfileImage.frame.size.width / 2
                                 self.intraProfileImage.clipsToBounds = true
                             }
@@ -63,6 +65,7 @@ class customTableViewCell: UITableViewCell {
             getImageFromUrl.resume()
         }
     }
+    
 }
 
 
