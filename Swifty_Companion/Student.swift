@@ -22,7 +22,7 @@ struct StudentStruct {
     var level : Float = 0.0
     var imageUrl: String?
     
-    var skills = [SkillsStruct]() // no label
+    var skills = [SkillsStruct]()
     var projects = [MarksStruct]() // no label
 }
 

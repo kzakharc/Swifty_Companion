@@ -11,6 +11,8 @@ import UIKit
 class MyTableViewController: UITableViewController {
     
     var studentInfo: StudentStruct?
+    let sections: [String] = ["Profile", "Skills", "Projects"]
+    let sectionsImages: [UIImage] = [#imageLiteral(resourceName: "profile"), #imageLiteral(resourceName: "skills"), #imageLiteral(resourceName: "project")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,31 +20,74 @@ class MyTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         }
-        //        else if section == 1 {
-        //            if let skillsCount = studentInfo?.skills.count {
-        //                return skillsCount
-        //            }
-        //        }
-        //        else if section == 2 {
-        //            if let projectsCount = studentInfo?.projects.count {
-        //                return projectsCount
-        //            }
-        //        }
+        else if section == 1 {
+            if let skillsCount = studentInfo?.skills.count {
+                return skillsCount
+            }
+        }
+        else if section == 2 {
+            if let projectsCount = studentInfo?.projects.count {
+                return projectsCount
+            }
+        }
         return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.lightGray
+        
+        let image = UIImageView(image: sectionsImages[section])
+        image.frame = CGRect(x: 5, y: 5, width: 35, height: 35)
+        view.addSubview(image)
+        
+        let label = UILabel()
+        label.text = sections[section]
+        label.frame = CGRect(x: 45, y: 5, width: 100, height: 35)
+        view.addSubview(label)
+        
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 45
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "firstCell", for: indexPath) as? customTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as? customTableViewCell {
                 if let studInfo = studentInfo {
                     cell.setStudentLabels(for: studInfo)
+                }
+                return cell
+            }
+        }
+        else if indexPath.section == 1 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "skillsCell", for: indexPath) as? skillsTableViewCell {
+                if let someSkill = studentInfo?.skills[indexPath.row] {
+                    cell.setStudentSkills(skill: someSkill)
+                }
+                return cell
+            }
+        }
+        else if indexPath.section == 2 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as? projectTableViewCell {
+                if let someProject = studentInfo?.projects[indexPath.row] {
+                    cell.setStudentProject(project: someProject)
+                    if let valid = someProject.validated {
+                        if valid == true {
+                            cell.contentView.backgroundColor = UIColor(red:0.92, green:0.88, blue:0.95, alpha:1.0)
+                        } else {
+                            cell.contentView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+                        }
+                    }
                 }
                 return cell
             }
