@@ -42,7 +42,7 @@ class MyTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = UIColor(red:0.73, green:0.74, blue:0.88, alpha:1.0)
         
         let image = UIImageView(image: sectionsImages[section])
         image.frame = CGRect(x: 5, y: 5, width: 35, height: 35)
@@ -56,7 +56,7 @@ class MyTableViewController: UITableViewController {
         return view
     }
     
-    override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45
     }
     

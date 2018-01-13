@@ -24,6 +24,13 @@ class customTableViewCell: UITableViewCell {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        progressView.transform = progressView.transform.scaledBy(x: 1, y: 3)
+        progressView.progressImage = #imageLiteral(resourceName: "progressBarImage")
+    }
+    
     func setStudentLabels(for studentInfo: StudentStruct) {
 
         displayNameLabel.text = "  " + studentInfo.displayname

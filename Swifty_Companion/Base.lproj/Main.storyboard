@@ -33,7 +33,7 @@
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="nickname"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uW6-d0-zHl">
                                         <rect key="frame" x="0.0" y="40" width="175" height="30"/>
@@ -232,6 +232,7 @@
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eHn-Cj-5fo">
                                                     <rect key="frame" x="0.0" y="29.5" width="309" height="2"/>
                                                     <color key="tintColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="trackTintColor" red="0.95950930302454762" green="0.94541094481521004" blue="1" alpha="0.38377568493150677" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </progressView>
                                             </subviews>
                                         </stackView>
@@ -290,6 +291,7 @@
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="a7U-Sc-gFp">
                                             <rect key="frame" x="30" y="39" width="315" height="2"/>
                                             <color key="tintColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="trackTintColor" red="0.53264677520000003" green="0.1827728076" blue="0.348692948" alpha="0.16133347602260276" colorSpace="custom" customColorSpace="displayP3"/>
                                         </progressView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.18479867924454757" green="0.33744853398463059" blue="0.5326467752456665" alpha="0.12548159246575341" colorSpace="custom" customColorSpace="displayP3"/>

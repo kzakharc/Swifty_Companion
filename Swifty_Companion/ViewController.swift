@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var usernameField: UITextField!
@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.usernameField.delegate = self
         
         errorLabel.isHidden = true
         
@@ -34,12 +36,22 @@ class ViewController: UIViewController {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        usernameField.resignFirstResponder()
+        return(true)
+    }
+    
     func emtyField() {
         errorLabel.alpha = 0.8
         errorLabel.backgroundColor = UIColor(red:0.92, green:0.89, blue:0.61, alpha:1.0)
-        errorLabel.textColor = UIColor(red:1.00, green:0.40, blue:0.40, alpha:1.0)
+        errorLabel.textColor = UIColor(red:0.42, green:0.31, blue:0.50, alpha:1.0)
         errorLabel.text = "User name field is emty!"
         errorLabel.isHidden = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
     func checkName() {
@@ -47,13 +59,15 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             self.errorLabel.alpha = 0.7
             self.errorLabel.backgroundColor = UIColor(red:1.00, green:0.40, blue:0.40, alpha:1.0)
-            self.errorLabel.textColor = UIColor(red:0.92, green:0.89, blue:0.61, alpha:1.0)
+            self.errorLabel.textColor = UIColor(red:0.91, green:0.89, blue:0.92, alpha:1.0)
             self.errorLabel.text = "Wrong user name!"
             self.errorLabel.isHidden = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
     @IBAction func touchSearch(_ sender: UIButton) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         errorLabel.isHidden = true
         if let name = usernameField.text {
             studentName = name.split(separator: " ").joined()
@@ -179,6 +193,7 @@ class ViewController: UIViewController {
                         } else {
                             // everything is ok
                             DispatchQueue.main.async {
+                                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                                 self.performSegue(withIdentifier: "firstSegue", sender: self)
                                 self.usernameField.text = ""
                             }
