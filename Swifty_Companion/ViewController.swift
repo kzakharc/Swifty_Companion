@@ -13,14 +13,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
-    var token = String()
     var studentName = String()
-    var student = StudentStruct()
+    var request = Request(UID: "0a9eca6eb26d9156b2607741999cddbd50f6ee9dc6166ca66c46aabf3fd0a7f5", SECRET: "dc4c2087acf4020acd0b93fad8d6999d5230b68653390bf907c0e04b1763cdf4")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.usernameField.delegate = self
+        request.requestForToken()
         
         errorLabel.isHidden = true
         
@@ -74,141 +73,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if studentName == "" {
                 emtyField()
             } else {
-                student = StudentStruct()
-                student.login = studentName
+                self.request.student = StudentStruct()
+                self.request.student.login = studentName
             }
         }
         
         if studentName != "" {
-            let UID = "0a9eca6eb26d9156b2607741999cddbd50f6ee9dc6166ca66c46aabf3fd0a7f5"
-            let SECRET = "dc4c2087acf4020acd0b93fad8d6999d5230b68653390bf907c0e04b1763cdf4"
-            let BEARER = ((UID + ":" + SECRET).data(using: String.Encoding.utf8))!.base64EncodedString(options: NSData.Base64EncodingOptions.init(rawValue: 0))
-            
-            let url = NSURL(string: "https://api.intra.42.fr/oauth/token")
-            var request = URLRequest(url: url! as URL)
-            request.httpMethod = "POST"
-            request.setValue("Basic " + BEARER, forHTTPHeaderField: "Authorization")
-            request.setValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = "grant_type=client_credentials&client_id=0a9eca6eb26d9156b2607741999cddbd50f6ee9dc6166ca66c46aabf3fd0a7f5&client_secret=dc4c2087acf4020acd0b93fad8d6999d5230b68653390bf907c0e04b1763cdf4".data(using: String.Encoding.utf8)
-            
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                print(request)
+            self.request.signIn(studentName: studentName, completion: { (dictionary, error) in
                 if let err = error {
                     print(err)
                 }
-                else if let d = data {
-                    do {
-                        if let dic = try JSONSerialization.jsonObject(with: d, options: []) as? NSDictionary {
-                            if let t = dic["access_token"] as? String {
-                                self.token = t
-                                self.signIn(token: self.token)
-                            }
+                if let dic = dictionary {
+                    if (dic.count > 0) {
+                        self.request.setStudent(dic: dic)
+                        DispatchQueue.main.async {
+                            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                            self.performSegue(withIdentifier: "firstSegue", sender: self)
+                            self.usernameField.text = ""
                         }
-                    }
-                    catch (let err) {
-                        print(err)
+                    } else {
+                        self.checkName()
                     }
                 }
-            }
-            task.resume()
+            })
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dectinationView: MyTableViewController = segue.destination as! MyTableViewController
-        dectinationView.studentInfo = self.student
+        dectinationView.studentInfo = self.request.student
     }
-    
-    func signIn(token: String) {
-        print(token)
-        let req = "https://api.intra.42.fr/v2/users/" + studentName.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! + "?access_token=" + self.token
-        let url = URL(string: req)
-        let request = URLRequest(url: url! as URL)
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let err = error {
-                print(err)
-            }
-            else if let d = data {
-                do {
-                    if let dic = try JSONSerialization.jsonObject(with: d, options: []) as? NSDictionary {
-                        if let name = dic["displayname"] as? String {
-                            self.student.displayname = name
-                        }
-                        if let email = dic["email"] as? String {
-                            self.student.email = email
-                        }
-                        if let phone = dic["phone"] as? String {
-                            self.student.phone = phone
-                        }
-                        if let image = dic["image_url"] as? String {
-                            self.student.imageUrl = image
-                        }
-                        if let correction_point = dic["correction_point"] as? Int {
-                            self.student.correction_point = correction_point
-                        }
-                        if let location = dic["location"] as? String {
-                            self.student.location = location
-                        }
-                        if let wallet = dic["wallet"] as? Int {
-                            self.student.wallet = wallet
-                        }
-                        if let pool_year = dic["pool_year"] as? Int {
-                            self.student.pool_year = pool_year
-                        }
-                        if let dictionary = dic["cursus_users"] as? [NSDictionary] {
-                            for cursus in dictionary {
-                                if let a = cursus.value(forKey: "cursus_id") as? Int {
-                                    if a == 1 {
-                                        if let g = cursus.value(forKey: "grade") as? String {
-                                            self.student.grade = g
-                                        }
-                                        if let l = cursus.value(forKey: "level") as? Float {
-                                            self.student.level = l
-                                        }
-                                        if let skillDictionary = cursus.value(forKey: "skills") as? [NSDictionary] {
-                                            for skill in skillDictionary {
-                                                self.student.skills.append(SkillsStruct(name: skill.value(forKey: "name") as? String, level: skill.value(forKey: "level") as? Float))
-                                                
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        if let projects = dic["projects_users"] as? [NSDictionary] {
-                            for project in projects {
-                                if let a = project.value(forKey: "cursus_ids") as? [Int] {
-                                    if a[0] == 1 {
-                                       if let mark = project.value(forKey: "final_mark") as? Int,
-                                        let valid = project.value(forKey: "validated?") as? Bool,
-                                        let pro = project.value(forKey: "project") as? [String: Any?] {
-                                            self.student.projects.append(MarksStruct(finalMark: mark, name: pro["slug"] as? String, validated: valid))
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        if dic.count == 0 {
-                            self.checkName()
-                        } else {
-                            // everything is ok
-                            DispatchQueue.main.async {
-                                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                                self.performSegue(withIdentifier: "firstSegue", sender: self)
-                                self.usernameField.text = ""
-                            }
-                        }
-                    }
-                }
-                catch (let err) {
-                    print(err)
-                }
-                
-            }
-        }
-        task.resume()
-    }
-    
 }
 
 

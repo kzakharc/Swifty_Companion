@@ -17,6 +17,7 @@
 		08FDEA881FE69F7B00F2FDC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08FDEA861FE69F7B00F2FDC6 /* Main.storyboard */; };
 		08FDEA8A1FE69F7B00F2FDC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08FDEA891FE69F7B00F2FDC6 /* Assets.xcassets */; };
 		08FDEA8D1FE69F7B00F2FDC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08FDEA8B1FE69F7B00F2FDC6 /* LaunchScreen.storyboard */; };
+		5BB769F420287A11001E03A6 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB769F320287A11001E03A6 /* Request.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		08FDEA891FE69F7B00F2FDC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08FDEA8C1FE69F7B00F2FDC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08FDEA8E1FE69F7B00F2FDC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BB769F320287A11001E03A6 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				08C1C5EA20090A2D00D18EA7 /* projectTableViewCell.swift */,
 				08C1C5E82008F7C700D18EA7 /* skillsTableViewCell.swift */,
 				08BEBC5E1FFD529100BFDC8F /* MyTableViewController.swift */,
+				5BB769F320287A11001E03A6 /* Request.swift */,
 				08FDEA8E1FE69F7B00F2FDC6 /* Info.plist */,
 				08FDEA891FE69F7B00F2FDC6 /* Assets.xcassets */,
 				08FDEA941FE6A57D00F2FDC6 /* Supporting Files */,
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				082FB6741FED826200207128 /* Student.swift in Sources */,
+				5BB769F420287A11001E03A6 /* Request.swift in Sources */,
 				08C1C5E92008F7C700D18EA7 /* skillsTableViewCell.swift in Sources */,
 				08FDEA851FE69F7A00F2FDC6 /* ViewController.swift in Sources */,
 				08A9A13F1FF68E220008DE03 /* customTableViewCell.swift in Sources */,
