@@ -66,14 +66,9 @@
 		08FDEA811FE69F7A00F2FDC6 /* Swifty_Companion */ = {
 			isa = PBXGroup;
 			children = (
-				08FDEA841FE69F7A00F2FDC6 /* ViewController.swift */,
-				08A9A13E1FF68E220008DE03 /* customTableViewCell.swift */,
-				082FB6731FED826200207128 /* Student.swift */,
+				5B4B96A920290ACC00294875 /* Controller */,
 				08FDEA861FE69F7B00F2FDC6 /* Main.storyboard */,
-				08C1C5EA20090A2D00D18EA7 /* projectTableViewCell.swift */,
-				08C1C5E82008F7C700D18EA7 /* skillsTableViewCell.swift */,
-				08BEBC5E1FFD529100BFDC8F /* MyTableViewController.swift */,
-				5BB769F320287A11001E03A6 /* Request.swift */,
+				5B4B96A820290A7000294875 /* Model */,
 				08FDEA8E1FE69F7B00F2FDC6 /* Info.plist */,
 				08FDEA891FE69F7B00F2FDC6 /* Assets.xcassets */,
 				08FDEA941FE6A57D00F2FDC6 /* Supporting Files */,
@@ -88,6 +83,27 @@
 				08FDEA8B1FE69F7B00F2FDC6 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5B4B96A820290A7000294875 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5BB769F320287A11001E03A6 /* Request.swift */,
+				082FB6731FED826200207128 /* Student.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B4B96A920290ACC00294875 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				08C1C5E82008F7C700D18EA7 /* skillsTableViewCell.swift */,
+				08C1C5EA20090A2D00D18EA7 /* projectTableViewCell.swift */,
+				08A9A13E1FF68E220008DE03 /* customTableViewCell.swift */,
+				08FDEA841FE69F7A00F2FDC6 /* ViewController.swift */,
+				08BEBC5E1FFD529100BFDC8F /* MyTableViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
