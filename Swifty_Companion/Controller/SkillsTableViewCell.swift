@@ -8,7 +8,7 @@
 
 import UIKit
 
-class skillsTableViewCell: UITableViewCell {
+class SkillsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var skillNameLabel: UILabel!
     @IBOutlet weak var skillProgressLabel: UIProgressView!

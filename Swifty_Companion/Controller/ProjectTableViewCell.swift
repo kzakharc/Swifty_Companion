@@ -9,7 +9,7 @@
 
 import UIKit
 
-class projectTableViewCell: UITableViewCell {
+class ProjectTableViewCell: UITableViewCell {
 
     @IBOutlet weak var projectNameLabel: UILabel!
     

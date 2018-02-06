@@ -62,7 +62,7 @@ class MyTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as? customTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoTableViewCell {
                 if let studInfo = studentInfo {
                     cell.setStudentLabels(for: studInfo)
                 }
@@ -70,7 +70,7 @@ class MyTableViewController: UITableViewController {
             }
         }
         else if indexPath.section == 1 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "skillsCell", for: indexPath) as? skillsTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SkillsCell", for: indexPath) as? SkillsTableViewCell {
                 if let someSkill = studentInfo?.skills[indexPath.row] {
                     cell.setStudentSkills(skill: someSkill)
                 }
@@ -78,7 +78,7 @@ class MyTableViewController: UITableViewController {
             }
         }
         else if indexPath.section == 2 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as? projectTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as? ProjectTableViewCell {
                 if let someProject = studentInfo?.projects[indexPath.row] {
                     cell.setStudentProject(project: someProject)
                     if let valid = someProject.validated {

@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" rowHeight="324" id="kuQ-Xg-Yuy" customClass="customTableViewCell" customModule="Swifty_Companion" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InfoCell" rowHeight="324" id="kuQ-Xg-Yuy" userLabel="InfoCell" customClass="InfoTableViewCell" customModule="Swifty_Companion" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="324"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kuQ-Xg-Yuy" id="LQF-Yc-JpO">
@@ -275,7 +275,7 @@
                                     <outlet property="yearLabel" destination="t5w-WV-wPJ" id="IbK-t4-IC2"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="skillsCell" rowHeight="59" id="D7f-DJ-Ujd" customClass="skillsTableViewCell" customModule="Swifty_Companion" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SkillsCell" rowHeight="59" id="D7f-DJ-Ujd" userLabel="SkillsCell" customClass="SkillsTableViewCell" customModule="Swifty_Companion" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="352" width="375" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D7f-DJ-Ujd" id="13a-h3-ozF">
@@ -310,7 +310,7 @@
                                     <outlet property="skillProgressLabel" destination="a7U-Sc-gFp" id="H45-mq-RMi"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectCell" id="xIj-l5-aZS" customClass="projectTableViewCell" customModule="Swifty_Companion" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" id="xIj-l5-aZS" userLabel="ProjectCell" customClass="ProjectTableViewCell" customModule="Swifty_Companion" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="411" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xIj-l5-aZS" id="Icw-XN-T3a">

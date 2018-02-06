@@ -9,7 +9,7 @@
 import UIKit
 
 
-class customTableViewCell: UITableViewCell {
+class InfoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var intraProfileImage: UIImageView!
     @IBOutlet weak var displayNameLabel: UILabel!
