@@ -21,6 +21,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.usernameField.delegate = self
         request.requestForToken()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         errorLabel.isHidden = true
         
         usernameField.alpha = 0.8
@@ -33,15 +36,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         searchButton.layer.borderWidth = 1.5
         searchButton.layer.borderColor = UIColor.white.cgColor
         
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        usernameField.resignFirstResponder()
-        return(true)
     }
     
     func emtyField() {
@@ -103,7 +97,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let dectinationView: MyTableViewController = segue.destination as! MyTableViewController
         dectinationView.studentInfo = self.request.student
     }
+    
+    // MARK: keyboard settings
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y = -50
+    }
+    
+    @objc func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        usernameField.resignFirstResponder()
+        return(true)
+    }
 }
-
-
 
