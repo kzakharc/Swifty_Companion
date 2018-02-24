@@ -72,6 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
+        
         if studentName != "" {
             self.request.signIn(studentName: studentName, completion: { (dictionary, error) in
                 if let err = error {
